@@ -37,7 +37,21 @@ public class OutputData //Output class that outputs all data onto the Console
         point2+=40; //Changes the value of point x by incrementing 40 each time
       }
     }
-
+    
+public void drawTable(Console c) //Method to output the table that the game is played on 
+    {
+      Image table;  
+    try{
+      
+       table= ImageIO.read(new File("table.jpg")); //Import the file onto the Console
+    }
+    catch(IOException e)  
+    {
+      table = null;
+    }
+    
+    c.drawImage(table,5,5,null);  //Draw the image onto the Console
+    }
     
 
     
