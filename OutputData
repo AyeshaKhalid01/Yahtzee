@@ -1,1 +1,43 @@
+import hsa.Console;      
+import java.awt.*;       
+import java.io.*;        
+import javax.imageio.*; 
 
+//Program Name:OutputData
+//Lyba Mughees
+//Last modified:January 19th,2018
+//Description: Outputs the dice and the images used to run the game
+
+public class OutputData //Output class that outputs all data onto the Console
+{
+  static Console c;
+  private int [] rollDice= new int [5]; //Attribute for dice that's created
+  
+  public OutputData(int[] diceValue) //Constructor
+  {
+    for (int x=0; x<=4; x++)
+    {
+      rollDice [x]= diceValue [x];
+    }
+  }
+    
+   public void drawDice(int [ ] rollDice,Console c) //Method to output all 5 dice on the screen
+    {
+      int point2=0;  //Changes the value of int x when outputting the dice so the dice aren't overlapped
+      int x=10; //Allows the String to move x units over
+      c.drawString("Dice: ",1,70); //Outputs the word dice before the dice are outputted
+     
+      //Loops till all 5 dice values have been outputted onto the Console
+      for (int y=0;y<=4;y++)
+      {
+        String diceValue=Integer.toString(rollDice[y]); //Changes dice value into a string
+        c.drawString(diceValue,x,97);  //Outputs the numerical value for the dice inside a rectangle
+        x=x+41; //Moves the string another 40 units over 
+        c.drawRect(point2,80,30, 30); //Draws a rectangle on the Console
+        point2+=40; //Changes the value of point x by incrementing 40 each time
+      }
+    }
+
+    
+
+    
