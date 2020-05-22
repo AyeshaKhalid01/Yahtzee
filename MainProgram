@@ -1,1 +1,340 @@
+//import hsa.Console;
 
+//Program Name:Yahtzee
+
+import java.io.Console;
+
+public class MainProgram //Main game
+{
+  static Console c;
+  
+  //The main method of the program
+  public static void main(String[]args)
+  {
+    c= new Console(150,150); //Console size change
+    int[] diceValue = new int [5]; //Variable to create the dice values
+    diceValue = rollDice(); //Takes the roll dice method and makes the numerical dice value for the dice
+    int totalScore1=0; //Keeps track of player 1's points
+    int totalScore2=0; //Keeps track of player 2 points
+    int roundPoints=0; //The points achieved in one round
+    int totalRounds=0; //Total number of rounds played so far
+    String firstPlayer; //First player's name
+    String quitRound;   //Variable to quit the game
+    String secondPlayer; //Second player's name
+    int scoringInput;    //The scoring method the users want to use
+    int yahtzee=0,chance=0,largeStraight=0,smallStraight=0,fullHouse=0,fourKind=0,threeKind=0,sixes=0,fives=0,fours=0,threes=0,twos=0,ones=0; //The different scoring methods
+    String methodTracker="no"; //Keeps track of how many times each scoring method has been used
+    Calculations y = new Calculations(diceValue); //To input calculation class onto the Console
+    OutputData o= new OutputData(diceValue);  //To input the OutputData class onto the Console
+    
+    o.drawYahtzee(c); //Call thew method to draw the intoduction to the program
+    
+    //Wait 2 seconds for the actual game to start
+    try
+    {
+      Thread.sleep(2000);
+    }
+    catch(InterruptedException e)
+    {
+    }
+    
+    //Clear Console
+    c.clear();
+    
+    //Players input their names
+    c.println("Enter Player 1's name");
+    firstPlayer= c.readLine();
+    c.println("Enter Player 2's name");
+    secondPlayer=c.readLine();
+    c.clear();
+    
+    //The game starts 
+    do
+    {
+      totalRounds++; //Increments the total number of rounds by 1
+      
+      //Determines if it's player's one or player's two turn
+      if(totalRounds%2!=0)
+      {
+        c.println("It is "+firstPlayer+"'s turn");
+        
+        //Waits 0.5 seconds for the second player's turn
+        try
+        {
+          Thread.sleep(500);
+        }
+        catch(InterruptedException e)
+        {
+        }
+      }
+      else
+      {
+        c.println("It is "+secondPlayer+"'s turn");
+        try
+        {
+          Thread.sleep(500);
+        }
+        catch(InterruptedException e)
+        {
+        }
+      }
+      diceValue = rollDice();
+      o.drawDice(diceValue,c);
+      diceValue=reRoll(diceValue);
+      c.clear();
+      o.drawDice(diceValue,c);
+      c.setCursor(9,1);
+      c.println("select a scoring method by inpuuting the method # that corresponds to the scoring method you want");
+      o.drawScore(c);
+      scoringInput=c.readInt();
+      
+      do
+      {
+        switch(scoringInput)
+        {
+          case 13:
+            yahtzee=yahtzee+1;
+            if(yahtzee>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              methodTracker="no";
+              break;
+            }
+            else
+            {
+              roundPoints=(y.yahtzee(diceValue));
+              methodTracker="yes";
+              break;
+            }
+            
+          case 12:
+            chance=chance+1;
+            if(chance>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.chance(diceValue));
+              methodTracker="yes";
+              break;
+            }
+            
+          case 11:
+            largeStraight=largeStraight+1;
+            if(largeStraight>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.largeStraight(diceValue));
+              methodTracker="yes";
+              break;
+            }
+            
+          case 10:
+            smallStraight=smallStraight+1;
+            if(smallStraight>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.smallStraight(diceValue));
+              methodTracker="yes";
+              break;
+            }
+            
+          case 9:
+            fullHouse=fullHouse+1;
+            if(fullHouse>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.fullHouse(diceValue));
+              methodTracker="yes";
+              break;
+            }
+            
+          case 8:
+            fourKind=fourKind+1;
+            if(fourKind>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.fourKind(diceValue));
+              methodTracker="yes";
+              break;
+            }
+            
+          case 7:
+            threeKind=threeKind+1;
+            if(threeKind>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.threeKind(diceValue));
+              methodTracker="yes";
+              break;
+            }
+            
+          case 6:
+            sixes=sixes+1;
+            if(sixes>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.sixes(diceValue));
+              methodTracker="yes";
+              break;
+            }
+            
+          case 5:
+            fives=fives+1;
+            if(fives>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.fives(diceValue));
+              methodTracker="yes";
+              break;
+            } 
+            
+          case 4:
+            fours=fours+1;
+            if(fours>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.fours(diceValue));
+              methodTracker="yes";
+              break;
+            }
+            
+          case 3:
+            threes=threes+1;
+            if(threes>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.threes(diceValue));
+              methodTracker="yes";
+              break;
+            } 
+            
+          case 2:
+            twos=twos+1;
+            if(twos>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.twos(diceValue));
+              methodTracker="yes";
+              break;
+            }  
+            
+          case 1:
+            ones=ones+1;
+            if(ones>1)
+            {
+              c.println("you have already selcted this method before select another one");
+              o.drawScore(c);
+              scoringInput=c.readInt();
+              break;
+            }
+            else
+            {
+              roundPoints=(y.ones(diceValue));
+              methodTracker="yes";
+              break;
+            }        
+        }
+      }while(methodTracker.equalsIgnoreCase("no"));
+      c.clear();
+      if(totalRounds%2!=0)
+      {
+        totalScore1=totalScore1+roundPoints;
+        c.println(firstPlayer+"'s points: "+ totalScore1);
+        c.println(secondPlayer+"'s points: "+ totalScore2);
+      }
+      else
+      {
+        totalScore2=totalScore2+roundPoints;
+        c.println(firstPlayer+"'s points: "+ totalScore1);
+        c.println(secondPlayer+"'s points: "+ totalScore2);
+        c.println("Do you want to quit,yes or no");
+        quitRound=c.readLine();
+        if(quitRound.equalsIgnoreCase("yes"))
+        {
+          c.println("I hoped you enjoyed the game, come back soon!");
+          break;
+        }
+        else
+        {
+          c.println("NEW ROUND!!!");
+           try
+        {
+          Thread.sleep(2000);
+        }
+        catch(InterruptedException e)
+        {
+        }
+        c.clear();
+    }
+      }
+    }while (totalRounds<=26);
+  }
+  
+  
