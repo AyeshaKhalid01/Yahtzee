@@ -4,8 +4,6 @@ import java.io.*;
 import javax.imageio.*; 
 
 //Program Name:OutputData
-//Lyba Mughees
-//Last modified:January 19th,2018
 //Description: Outputs the dice and the images used to run the game
 
 public class OutputData //Output class that outputs all data onto the Console
@@ -53,5 +51,33 @@ public void drawTable(Console c) //Method to output the table that the game is p
     c.drawImage(table,5,5,null);  //Draw the image onto the Console
     }
     
+public void drawScore(Console c) //Method to output the scoring methods
+      {
+        Image score; 
+    try{
+      score = ImageIO.read(new File("score.jpg")); //Import the file onto the Console
+    }
+    catch(IOException e)  
+    {
+      score = null;
+    }
+    c.drawImage(score,850,30,null); //Draw the image onto the Console
+    }
+      
+public void drawYahtzee(Console c) //Method to draw the welcome logo
+    {
+      
+      Image yahtzee; 
+    try{
+      yahtzee = ImageIO.read(new File("yahtzee.jpg")); //Import the file onto the Console
+    }
+    catch(IOException e)  
+    {
+      yahtzee = null;
+    }
+    c.drawImage(yahtzee,5,5,null); //Draw the image onto the Console
+    }
+      
+}//End OutputData class
 
     
