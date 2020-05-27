@@ -5,3 +5,6 @@ The game consists of 13 rounds. In each round, you roll the dice and then score 
 The game ends once all 13 categories have been scored.
 
 Source: [Yahtzee Rules](http://www.yahtzee.org.uk/rules.html) 
+
+### Running the program
+Must have a java compiler and hsa class path downloaded
